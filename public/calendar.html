@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendário de Palestras</title>
+  <!-- <link rel="stylesheet" href="./style.css"> -->
+  <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon"> -->
+</head>
+
+<body>
+  <h1>Palestras</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Tema</th>
+        <th>Palestrante</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range . }}
+        <tr>
+          <td>{{ .Date }}</td>
+          <td>{{ .Title }}</td>
+          <td>{{ .Speaker }}</td>
+        </tr>
+      {{ end }}
+    </tbody>
+  </table>
+</body>
