@@ -1,6 +1,12 @@
 package main
 
-import "net/http"
+import (
+	"html/template"
+	"net/http"
+	"path/filepath"
+
+	"github.com/flpnascto/lecture-calendar/calendar"
+)
 
 func main() {
 	mux := http.NewServeMux()
@@ -9,5 +15,14 @@ func main() {
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Página Inicial"))
+	templatePath := filepath.Join(".", "public", "calendar.html")
+	t, err := template.ParseFiles(templatePath)
+	if err != nil {
+		http.Error(w, "Erro ao carregar a página", http.StatusInternalServerError)
+		return
+	}
+	events := calendar.GetEvents()
+
+	t.Execute(w, events)
+
 }
